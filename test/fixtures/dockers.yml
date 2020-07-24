@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  docker_host_fqdn: MyString
+  docker_host_ram: 1
+  docker_host_cpu: 1
+  docker_host_disk_space: 1.5
+  docker_host_location: MyString
+  docker_host_network_interface_throughput: 1.5
+  docker_host_provider_type: MyString
+  docker_host_api_key: MyText
+
+two:
+  docker_host_fqdn: MyString
+  docker_host_ram: 1
+  docker_host_cpu: 1
+  docker_host_disk_space: 1.5
+  docker_host_location: MyString
+  docker_host_network_interface_throughput: 1.5
+  docker_host_provider_type: MyString
+  docker_host_api_key: MyText

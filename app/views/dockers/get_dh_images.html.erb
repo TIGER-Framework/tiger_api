@@ -1,0 +1,36 @@
+ 
+<div class="container">
+  <table class="responsive-table">
+    <caption><%= @docker.docker_host_fqdn %> docker hosts images list</caption>
+    <thead>
+       <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Hash</th>
+          <th scope="col">Creation date</th>
+          <th scope="col">Size, MB</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <% @dh_images.each do |dh_image| %>
+      <tr>
+        <td data-title="Name"><%= dh_image["RepoTags"][0] %></td>
+        <td data-title="Hash"><%= dh_image["Id"][7..14] %></td>
+        <% dh_image_creation_date_obj=Time.at(dh_image["Created"]).utc.to_datetime %>
+        <td data-title="Creation date"><%= dh_image_creation_date_obj.to_formatted_s(:rfc822) %></td>
+        <td data-title="Size, MB"><%= (dh_image["Size"].to_f/1000000).round(2) %></td>
+      </tr>
+    <% end %>
+     </tbody>
+  </table>
+  <br>
+  <br>
+  
+</div>
+
+
+ <%= link_to 'Back to Docker hosts list', dockers_path %>

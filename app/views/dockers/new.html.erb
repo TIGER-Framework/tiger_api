@@ -1,0 +1,56 @@
+<html>
+  <title>TIGER: new Docker host</title>
+  <h1>Welcome to the new Docker host creation page</h1>
+
+
+  <%= form_with scope: :docker, url: dockers_path, local: true do |form| %>
+    <%= form.label(:docker_host_fqdn, "Docker host FQDN  or IP address: ", :class=>"form_label") %>
+    <%= form.text_field(:docker_host_fqdn, :class=>"form_input", value:"localhost") %>
+<br>
+    <%= form.label(:docker_host_ram, "Docker host RAM configuration, GB: ", :class=>"form_label") %>
+    <%= form.text_field(:docker_host_ram, :class=>"form_input", value:2) %>
+ <br>
+   
+    
+    <%= form.label(:docker_host_cpu, "Docker host CPUs count: ", :class=>"form_label") %>
+    <%= form.text_field(:docker_host_cpu, :class=>"form_input", value:2) %>
+ <br>
+
+    <%= form.label(:docker_host_disk_space, "Docker host disk space, GB: ", :class=>"form_label") %>
+    <%= form.text_field(:docker_host_disk_space, :class=>"form_input", value: 10) %>
+ <br>
+
+    <%= form.label(:docker_host_location, "Docker host geographic location: ", :class=>"form_label") %>
+    <%= form.text_field(:docker_host_location, :class=>"form_input", value:"localhost") %>
+ <br>
+
+    <%= form.label(:docker_host_network_interface_throughput, "Docker host network interface throughput, GB/s: ", :class=>"form_label") %>
+    <%= form.text_field(:docker_host_network_interface_throughput, value:1, :class=>"form_input") %>
+ <br>
+    <%= form.label(:docker_host_provider_type, "Docker host provider type: ", :class=>"form_label") %>
+    <%= form.select(:docker_host_provider_type, [['Bare metall', 'bare_metall'],['AWS', 'aws'], ['GCP', 'gcp'],['Azure', 'azure']],{}, { :class=>'form_input' }) %>
+ <br>
+
+    <%= form.label(:docker_host_api_key, "Docker host client key (key.pem): ", :class=>"form_label") %> 
+    <%= form.text_area(:docker_host_api_key, size:"70x5",:class=>"form_input", value:"Docker client key (key.pem) content. Check https://docs.docker.com/engine/security/https/ for more information ") %>
+ <br>
+ <br>
+ <br>
+ <br>
+    <%= form.label(:docker_host_api_cert, "Docker host client certificate (cert.pem): ", :class=>"form_label") %> 
+    <%= form.text_area(:docker_host_api_cert, size:"70x5",:class=>"form_input", value:"Docker client certificate (cert.pem) content. Check https://docs.docker.com/engine/security/https/ for more information ") %>
+ <br>
+ <br>
+ <br>
+ <br>
+ <br>
+<%= link_to 'Check available Docker hosts', dockers_path  %>
+ <br>
+ <br>
+    <p>
+      <%= form.submit("Save Docker host configuration",:class=>"form_button") %>
+    </p>
+  <% end %>
+
+
+</html>

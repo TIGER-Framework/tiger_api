@@ -1,0 +1,39 @@
+<html>
+  <title>TIGER: create test</title>
+  <h1>Test settings generation</h1>
+
+  <%= form_with scope: :test, url: tests_path, local: true do |form| %>
+    <%= form.label(:test_type, "Test type ", :class=>"form_label") %>
+    <%= form.select(:test_type, [['Performance', 'performance'],['Security', 'security']],{}, { :class=>'form_input' }) %>
+<br>
+    <%= form.label(:influxdb_adapter_name, "InfluxDB adapter ", :class=>"form_label") %>
+    <%= form.collection_select(:influxdb_adapter_id, Influxdb.all, :id,:adapter_name, { :class=>'form_input' }) %>
+<br>
+    <%= form.label(:test_name, "Test name ", :class=>"form_label") %>
+    <%= form.text_field(:test_name, :class=>"form_input", value: "basic") %>
+<br>
+    <%= form.label(:ram, "Test RAM limit, MB ", :class=>"form_label") %>
+    <%= form.text_field(:ram, :class=>"form_input", value: '100') %>
+ <br>
+    <%= form.label(:cpu_cores, "Test CPU cores limit ", :class=>"form_label") %>
+    <%= form.text_field(:cpu_cores, :class=>"form_input", value: '1') %>
+ <br>
+    <%= form.label(:git_repo_url, "Test settings Git-compatible URL: ", :class=>"form_label") %>
+    <%= form.text_field(:git_repo_url, :class=>"form_input", value: 'https://github.com/TIGER-Framework/tiger_jmeter_tests.git') %>
+ <br>
+    <%= form.label(:git_repo_key, "SSH key for the Git URL (optional): ", :class=>"form_label") %>
+    <%= form.text_field(:git_repo_key, :class=>"form_input", value: '') %>
+ <br>
+    <%= form.label(:user_id, "Test container user ID (optional): ", :class=>"form_label") %>
+    <%= form.text_field(:user_id, :class=>"form_input", value: '1001') %>
+ <br>
+ <br>
+ <br>
+ <br>
+    <p>
+      <%= form.submit("Create test",:class=>"form_button") %>
+    </p>
+  <% end %>
+
+
+</html>

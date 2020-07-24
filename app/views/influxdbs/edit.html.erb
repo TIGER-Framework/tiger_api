@@ -1,0 +1,37 @@
+<html>
+  <title>TIGER: edit InfluxDB adapter settings</title>
+  <h1>Edit InfluxDB adapter settings</h1>
+
+
+  <%= form_with model: @influxdb, local: true, method: "patch", :action => 'update' do |form| %>
+    <%= form.label(:adapter_name, "Host: ", :class=>"form_label") %>
+    <%= form.text_field(:adapter_name, :class=>"form_input", value: @influxdb.adapter_name) %>
+  <br>
+    <%= form.label(:host, "Host: ", :class=>"form_label") %>
+    <%= form.text_field(:host, :class=>"form_input", value: @influxdb.host) %>
+  <br>
+    <%= form.label(:port, "Port: ", :class=>"form_label") %>
+    <%= form.text_field(:port, :class=>"form_input", value: @influxdb.port) %>
+  <br>
+    <%= form.label(:protocol, "Protocol: ", :class=>"form_label") %>
+    <%= form.text_field(:protocol, :class=>"form_input", value: @influxdb.protocol) %>
+  <br>
+    <%= form.label(:db_name, "Database name: ", :class=>"form_label") %>
+    <%= form.text_field(:db_name, :class=>"form_input", value: @influxdb.db_name) %>
+  <br>
+    <%= form.label(:username, "InfluxDB user name: ", :class=>"form_label") %>
+    <%= form.text_field(:username, :class=>"form_input", value: @influxdb.username) %>
+  <br>
+    <%= form.label(:password, "InfluxDB password: ", :class=>"form_label") %>
+    <%= form.text_field(:password, :class=>"form_input", value: @influxdb.password) %>
+  <br>
+  <br>
+  <br>
+  <br>
+    <p>
+      <%= form.submit("Update InfluxDB adapter settings",:class=>"form_button") %>
+    </p>
+  <% end %>
+
+
+</html>

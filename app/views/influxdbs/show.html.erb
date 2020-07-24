@@ -1,0 +1,10 @@
+<h1>InfluxDB host configuration summary</h1>
+ 
+      <p><strong>Host</strong>: <%= @influxdb.host %></p>
+      <p><strong>Port</strong>: <%= @influxdb.port %></p>
+      <p><strong>Protocol</strong>: <%= @influxdb.protocol %></p>
+      <p><strong>User name</strong>: <%= @influxdb.username %></p>
+      <p><strong>Password</strong>: <%= @influxdb.password %></p>
+      <p><strong>Database name</strong>: <%= @influxdb.db_name %></p>
+
+      <%= link_to 'Back to InfluxDB hosts list', influxdbs_path %>    

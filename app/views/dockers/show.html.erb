@@ -1,0 +1,15 @@
+<h1>Docker hosts configuration summary</h1>
+ 
+      <p><strong>ID</strong>: <%= @docker.id %></p>
+      <p><strong>FQDN/IP</strong>: <%= @docker.docker_host_fqdn %></p>
+      <p><strong>RAM</strong>: <%= @docker.docker_host_ram %></p>
+      <p><strong>CPU</strong>: <%= @docker.docker_host_cpu %></p>
+      <p><strong>Disk space</strong>: <%= @docker.docker_host_disk_space %></p>
+      <p><strong>Location</strong>: <%= @docker.docker_host_location %></p>
+      <p><strong>Network interface throughput</strong>: <%= @docker.docker_host_network_interface_throughput %></p>
+      <p><strong>Provider type</strong>: <%= @docker.docker_host_provider_type %></p>
+      <p><strong>API key</strong>: <%= @docker.docker_host_api_key[0..50] %></p>
+      <br><br><br><br><br>
+      <p><strong>API certificate</strong>: <%= @docker.docker_host_api_cert[0..50] %></p>
+
+      <%= link_to 'Back to Docker hosts list', dockers_path %>    

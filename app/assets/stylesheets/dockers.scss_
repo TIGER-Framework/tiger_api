@@ -1,0 +1,24 @@
+// Place all the styles related to the Dockers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.form_input {
+  position: absolute;
+    left: 350px;
+}
+
+.form_label {
+  line-height: 30px;
+}
+
+.form_button {
+  background-color: #1a8ed6;
+  border: none;
+  color: white;
+  padding: 10px 26px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-size: 14px;
+}

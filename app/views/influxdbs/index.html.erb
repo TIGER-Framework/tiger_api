@@ -1,0 +1,44 @@
+
+<div class="container">
+  <table class="responsive-table">
+    <caption>InfluxDB hosts list</caption>
+    <thead>
+       <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Adapter name</th>
+          <th scope="col">Host</th>
+          <th scope="col">Port</th>
+          <th scope="col">Protocol</th>
+          <th scope="col">Database name</th>
+          <th scope="col">Edit host settings</th>
+          <th scope="col">Delete host</th>
+       </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td></td>
+      </tr>
+    </tfoot>
+    <tbody>                  
+      <% @influxdbs.each do |influxdb| %>
+        <tr>
+          <th scope="row"><%= link_to influxdb.id.to_s, influxdb_path(influxdb) %></th>
+            <td data-title="Host"><%= influxdb.adapter_name %></td>
+            <td data-title="Host"><%= influxdb.host %></td>
+            <td data-title="Port"><%= influxdb.port %></td>
+            <td data-title="Protocol"><%= influxdb.protocol %></td>
+            <td data-title="Database name"><%= influxdb.db_name %></td>
+            <td data-title="Edit host settings"><%= link_to 'Edit', edit_influxdb_path(influxdb) %></td>
+            <td data-title="Delete host"><%= link_to 'Delete', influxdb_path(influxdb), method: :delete,
+                          data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <br>
+  <%= link_to "Generate InfluxDB adapter configuration", new_influxdb_path %>
+  <br>
+  <%= link_to "InfluxDB adapters list", influxdbs_path %>
+
+</div>

@@ -1,0 +1,2 @@
+class Docker < ApplicationRecord
+end

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TIGER framework</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <h3 align="center" color="#0088cc">TIGER continuous testing service</h3>
+
+    <table align="center">
+        <tr>
+          <td></td>
+          <td><%= link_to "Docker hosts", dockers_path %></td>
+          <td><%= link_to "Tests", tests_path %></td>
+          <td><%= link_to "InfluxDB hosts", influxdbs_path %></td>
+        </tr>
+    </table>
+
+    <%= yield %>
+
+    
+
+  </body>
+</html>
