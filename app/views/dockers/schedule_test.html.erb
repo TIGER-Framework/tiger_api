@@ -1,0 +1,29 @@
+<div class="container">
+    <table class="responsive-table">
+      <caption>CD pipeline integration details</caption>
+      <thead>
+        <tr>
+          <th scope="col">Path</th>
+          <th scope="col">Parameters</th>
+          <th scope="col">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= dockers_schedule_test_path %></td>
+          <td style="text-align:left"><pre><%= JSON.pretty_generate(@request_params)  %></pre></td>
+          <td>Create and start Docker container</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <table class="responsive-table">
+        <caption><%= @container_name %> Docker container details</caption>
+        <tr>
+          <td style="text-align:left; border:1px solid #1d96b2"><pre><%= JSON.pretty_generate(@test_attributes) %></pre></td>
+        </tr>
+    </table>
+</div>
+

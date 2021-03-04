@@ -4,13 +4,34 @@
 
 <div class="new_resource_container">
   <div class="new_resource_caption">
-    <p>Test configuration summary</p>
+    <p>Test schedule</p>
   </div>
 
-
+  <%= form_tag(dockers_schedule_test_path, method: "get") do %>
     <table class="new_resource_table" border="none">
       <tr>
-        <td>ID</td>
+        <td>Docker host name</td>        
+	<td><%= collection_select(:docker_host, :id, Docker.all, :id, :docker_host_name, {}, {:class => "form_input"}) %> </td>
+      </tr>
+      <tr>
+        <td>Build ID</td>
+        <td><%= text_field_tag("build_number", "1", size: 25, class: "form_input") %></td>
+      </tr>
+      <tr>
+        <td>Image name</td>
+        <td><%= text_field_tag("docker_image_name", "tigerframework/tiger_jmeter:0.0.6.1", size: 50, class: "form_input") %></td>        
+      </tr>
+    </table>
+    <%= hidden_field_tag "id", @test.id %>
+    <%= hidden_field_tag "influxdb_adapter_id", @test.influxdb_adapter_id %>
+    <p>
+      <%= submit_tag("Start test",:class=>"form_button") %>
+    </p>
+  <% end %>
+  
+    <table class="new_resource_table" border="none">
+      <tr>
+        <td>Test ID</td>
         <td><%= @test.id %></td>
       </tr>
       <tr>

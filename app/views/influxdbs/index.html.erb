@@ -1,3 +1,6 @@
+<div class="header">
+  <%= link_to "Create InfluxDB adapter", new_influxdb_path, class: "actions" %>
+</div>
 
 <div class="container">
   <table class="responsive-table">
@@ -23,7 +26,7 @@
       <% @influxdbs.each do |influxdb| %>
         <tr>
           <th scope="row"><%= link_to influxdb.id.to_s, influxdb_path(influxdb) %></th>
-            <td data-title="Host"><%= influxdb.adapter_name %></td>
+            <td data-title="InfluxDB adapter name"><%= influxdb.adapter_name %></td>
             <td data-title="Host"><%= influxdb.host %></td>
             <td data-title="Port"><%= influxdb.port %></td>
             <td data-title="Protocol"><%= influxdb.protocol %></td>
@@ -35,10 +38,4 @@
       <% end %>
     </tbody>
   </table>
-  <br>
-  <br>
-  <%= link_to "Generate InfluxDB adapter configuration", new_influxdb_path %>
-  <br>
-  <%= link_to "InfluxDB adapters list", influxdbs_path %>
-
 </div>

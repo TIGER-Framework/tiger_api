@@ -1,4 +1,8 @@
 
+<div class="header">
+  <a href="/tests/new" class="actions">Create a new test</a>
+</div>
+
 <div class="container">
   <table class="responsive-table">
     <caption>Tests list</caption>
@@ -6,12 +10,12 @@
        <tr>
           <th scope="col">ID</th>
           <th scope="col">Test type</th>
-          <th scope="col">Test name</th>
+          <th scope="col">Test scope</th>
           <th scope="col">RAM limit, MB</th>
           <th scope="col">CPU cores limit</th>
           <th scope="col">Git repository URL</th>
           <th scope="col">Git repository key</th>
-          <th scope= "col">InfluxDB adapter name</th>
+          <th scope= "col">InfluxDB adapter</th>
           <th scope="col">Container user ID</th>
           <th scope="col">Schedule test</th>
           <th scope="col">Edit test settings</th>
@@ -19,24 +23,28 @@
           
       </tr>
     </thead>
-    <tfoot>
-      <tr>
-        <td></td>
-      </tr>
-    </tfoot>
+
     <tbody>                  
       <% @tests.each do |test| %>
         <tr>
             <th scope="row"><%= link_to test.id.to_s, test_path(test) %></th>
             <td data-title="Test type"><%= test.test_type %></td>
-            <td data-title="Test name"><%= test.test_name %></td>
+            <td data-title="Test scope"><%= test.test_scope %></td>
             <td data-title="RAM limit, MB"><%= test.ram %></td>
             <td data-title="CPU cores limit"><%= test.cpu_cores %></td>
-            <td data-title="Git repository URL"><%= test.git_repo_url %></td>
-            <td data-title="Git repository key"><%= test.git_repo_key %></td>
-            <td data-title="InfluxDB adapter name"><%= test.influxdb_adapter_id %></td>
+            <td data-title="Git repository URL"><%= test.git_repo_url %></td>            
+            <% if test.git_repo_key != "" %>
+              <% if test.git_repo_key.length > 30 %>
+                <td data-title="Git repository key"><%= test.git_repo_key[0,15] + " ... " +test.git_repo_key[-15,15] %></td>
+              <% else %>
+                <td data-title="Git repository key"><%= test.git_repo_key %></td>
+              <% end %>
+            <% else %>
+              <td data-title="Git repository key">N/A</td>
+            <% end %>
+            <td data-title="InfluxDB adapter name"><%= Influxdb.find(test.influxdb_adapter_id).adapter_name %></td>
             <td data-title="Container user ID"><%= test.user_id %></td>
-            <td data-title="Schedule test"><%= link_to 'Schedule test', "/dockers/schedule-test?id=#{test.id.to_s}&influxdb_adapter_id=#{test.influxdb_adapter_id}", data: { confirm: 'Are you sure?' }  %></td>
+            <td data-title="Schedule test"><%= link_to 'Schedule test', :controller => "tests", :action => "schedule", :id => test.id  %></td>
             <td data-title="Edit test settings"><%= link_to 'Edit', edit_test_path(test) %></td>
             <td data-title="Delete test"><%= link_to 'Delete', test_path(test), method: :delete,
                           data: { confirm: 'Are you sure?' } %></td>
@@ -44,10 +52,4 @@
       <% end %>
     </tbody>
   </table>
-  <br>
-  <br>
-  <%= link_to "Create test", new_test_path %>
-  <br>
-  <%= link_to "Docker hosts list", dockers_path %>
-
 </div>

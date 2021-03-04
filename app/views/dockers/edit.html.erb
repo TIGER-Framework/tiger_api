@@ -1,53 +1,56 @@
-<html>
-  <title>TIGER: edit Docker host</title>
-  <h1>Edit Docker host configuration</h1>
+<br>
+<br>
 
+<div class="new_resource_container">
+  <div class="new_resource_caption">
+    <p>Edit Docker host configuration</p>
+  </div>
 
   <%= form_with model: @docker, local: true, method: "patch", :action => 'update' do |form| %>
-    <%= form.label(:docker_host_fqdn, "Docker host FQDN  or IP address: ", :class=>"form_label") %>
-    <%= form.text_field(:docker_host_fqdn, :class=>"form_input", value: @docker.docker_host_fqdn) %>
-<br>
-    <%= form.label(:docker_host_ram, "Docker host RAM configuration, GB: ", :class=>"form_label") %>
-    <%= form.text_field(:docker_host_ram, :class=>"form_input", value: @docker.docker_host_ram) %>
- <br>
-   
-    
-    <%= form.label(:docker_host_cpu, "Docker host CPUs count: ", :class=>"form_label") %>
-    <%= form.text_field(:docker_host_cpu, :class=>"form_input", value: @docker.docker_host_cpu) %>
- <br>
-
-    <%= form.label(:docker_host_disk_space, "Docker host disk space, GB: ", :class=>"form_label") %>
-    <%= form.text_field(:docker_host_disk_space, :class=>"form_input", value: @docker.docker_host_disk_space) %>
- <br>
-
-    <%= form.label(:docker_host_location, "Docker host geographic location: ", :class=>"form_label") %>
-    <%= form.text_field(:docker_host_location, :class=>"form_input", value: @docker.docker_host_location) %>
- <br>
-
-    <%= form.label(:docker_host_network_interface_throughput, "Docker host network interface throughput, GBit/s: ", :class=>"form_label") %>
-    <%= form.text_field(:docker_host_network_interface_throughput, :class=>"form_input", value: @docker.docker_host_network_interface_throughput) %>
- <br>
-    <%= form.label(:docker_host_provider_type, "Docker host provider type: ", :class=>"form_label") %>
-    <%= form.select(:docker_host_provider_type, [['Bare metall', 'bare_metall'],['AWS', 'aws'], ['GCP', 'gcp'],['Azure', 'azure']],{value: @docker.docker_host_provider_type}, { :class=>'form_input' }) %>
- <br>
-
-    <%= form.label(:docker_host_api_key, "Docker host client key (key.pem): ", :class=>"form_label") %> 
-    <%= form.text_area(:docker_host_api_key, size:"70x5", :class=>"form_input", value: @docker.docker_host_api_key) %>
-
-    <br><br><br><br><br>
-
-    <%= form.label(:docker_host_api_cert, "Docker host client certificate (cert.pem): ", :class=>"form_label") %> 
-    <%= form.text_area(:docker_host_api_cert, size:"70x5", :class=>"form_input", value: @docker.docker_host_api_cert) %>
- 
- <br>
- <br>
- <br>
- <br>
- <br>
+    <table class="new_resource_table" border="none">
+      <tr>
+        <td>Docker host custom name</td>
+        <td><%= form.text_field(:docker_host_name, :class=>"form_input", value: @docker.docker_host_name) %></td>
+      </tr>
+      <tr>
+        <td>FQDN/IP address</td>
+        <td><%= form.text_field(:docker_host_fqdn, :class=>"form_input", value: @docker.docker_host_fqdn) %></td>
+      </tr>
+      <tr>
+        <td>RAM, GB</td>
+        <td><%= form.text_field(:docker_host_ram, :class=>"form_input", value: @docker.docker_host_ram) %></td>
+      </tr>
+        <tr>
+        <td>CPU, cores</td>
+        <td><%= form.text_field(:docker_host_cpu, :class=>"form_input", value: @docker.docker_host_cpu) %></td>
+      </tr>
+        <tr>
+        <td>Disk space, GB</td>
+        <td><%= form.text_field(:docker_host_disk_space, :class=>"form_input", value: @docker.docker_host_disk_space) %></td>
+      </tr>
+        <tr>
+        <td>Host geographic location</td>
+        <td><%= form.text_field(:docker_host_location, :class=>"form_input", value: @docker.docker_host_location) %></td>
+      </tr>
+        <tr>
+        <td>Network interface throughput, GBit/s</td>
+        <td><%= form.text_field(:docker_host_network_interface_throughput, :class=>"form_input", value: @docker.docker_host_network_interface_throughput) %></td>
+      </tr>
+        <tr>
+        <td>Host provider type</td>
+        <td><%= form.select(:docker_host_provider_type, [['Bare metall', 'bare_metall'],['AWS', 'aws'], ['GCP', 'gcp'],['Azure', 'azure']],{value: @docker.docker_host_provider_type}, { :class=>'form_input' }) %></td>
+      </tr>
+        <tr>
+        <td>Docker API client key (key.pem)</td>
+        <td><%= form.text_area(:docker_host_api_key, size:"50x5", :class=>"form_input", value: @docker.docker_host_api_key) %></td>
+      </tr>
+        <tr>
+        <td>Docker API certificate (cert.pem)</td>
+        <td><%= form.text_area(:docker_host_api_cert, size:"50x5", :class=>"form_input", value: @docker.docker_host_api_cert) %></td>
+      </tr>
+    </table>
     <p>
-      <%= form.submit("Update Docker host configuration",:class=>"form_button") %>
+      <%= form.submit("Update configuration",:class=>"form_button") %>
     </p>
   <% end %>
-
-
-</html>
+</div>

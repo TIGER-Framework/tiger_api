@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TIGER framework</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="header">
+        <div class="logo">
+            <p class="header">CONTINUOUS TESTING SERVICE</p>
+        </div>
+        <br>
+        <div class="resources">
+            <a href="/dockers" class="header">Docker hosts</a>
+            <a href="/tests" class="header">Tests</a>
+            <a href="/influxdbs" class="header">InfluxDB adapters</a>
+        </div>
+    </div>
+

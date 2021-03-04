@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/dockers/images', to: 'dockers#get_dh_images' 
   get 'dockers/list'
   get '/dockers/schedule-test', to: 'dockers#schedule_test'
+  get 'tests/schedule', to: 'tests#schedule'
   root 'welcome#index'
   resources :dockers
   resources :tests

@@ -4,14 +4,57 @@ class DockersController < ApplicationController
 #    render plain: params[:host].inspect
   end
 
+
   def schedule_test
-    @dockers=Docker.all.order("id ASC")
+
+    @docker=Docker.find(params[:docker_host][:id])
     @test_obj=Test.find(params[:id])
     @influxdb_obj=Influxdb.find(params[:influxdb_adapter_id])
-    @test_attributes=JSON.parse(helpers.schedule_test(@test_obj,@dockers[0],@influxdb_obj))
-    
-    render plain: @test_attributes  #params.inspect
+
+    @container_name=params[:docker_image_name].gsub(/:|\//,'_')+'_'+Time.now.to_f.to_s.gsub('.','')
+    @schedule_params={
+      "HostConfig": {
+        "Memory": @test_obj.ram * 1000000, # Memory is using bytes
+        "CpusetCpus": @test_obj.cpu_cores.to_s,
+        "AutoRemove": true
+      },
+      "Image": params[:docker_image_name],
+      "User": @test_obj.user_id,
+      "Env": [
+        "tests_repo=#{@test_obj.git_repo_url}",
+        "test_type=#{@test_obj.test_type}", # the name of the test will be used as test type in InfluxDB JMeter adapter
+        "current_build_number=#{params[:build_number]}",
+        "project_id=#{@test_obj.project_id}",
+        "env_type=#{@test_obj.env_type}",
+        "lg_id=#{@container_name}",
+        "influx_protocol=#{@influxdb_obj.protocol}",
+        "influx_host=#{@influxdb_obj.host}",
+        "influx_port=#{@influxdb_obj.port}",
+        "influx_db=#{@influxdb_obj.db_name}",
+        "influx_username=#{@influxdb_obj.username}",
+        "influx_password=#{@influxdb_obj.password}"
+        ]
+    }
+
+    @start_params={}
+
+    @test_attributes = helpers.schedule_test(@test_obj,@docker,@influxdb_obj,@schedule_params,@start_params,@container_name)
+
+    #render plain: @test_attributes  #params.inspect
+
+    @request_params={
+      "docker_host['id']" => params[:docker_host][:id],
+      "build_number" => params[:build_number],
+      "docker_image_name" => params[:docker_image_name],
+      "id" => params[:id],
+      "influxdb_adapter_id" => params[:influxdb_adapter_id]
+    }
+
+    @request_params.to_json
+
+    render 'schedule_test'
   end
+
 
   def get_dh_images
     require 'json'
@@ -63,7 +106,7 @@ class DockersController < ApplicationController
           
   private
     def docker_params
-        params.require(:docker).permit(:docker_host_fqdn,:docker_host_ram,
+        params.require(:docker).permit(:docker_host_name,:docker_host_fqdn,:docker_host_ram,
         :docker_host_cpu,:docker_host_disk_space,
         :docker_host_location,:docker_host_network_interface_throughput,
         :docker_host_provider_type,:docker_host_api_key,:docker_host_api_cert)

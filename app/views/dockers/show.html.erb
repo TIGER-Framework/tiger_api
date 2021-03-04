@@ -1,15 +1,57 @@
-<h1>Docker hosts configuration summary</h1>
- 
-      <p><strong>ID</strong>: <%= @docker.id %></p>
-      <p><strong>FQDN/IP</strong>: <%= @docker.docker_host_fqdn %></p>
-      <p><strong>RAM</strong>: <%= @docker.docker_host_ram %></p>
-      <p><strong>CPU</strong>: <%= @docker.docker_host_cpu %></p>
-      <p><strong>Disk space</strong>: <%= @docker.docker_host_disk_space %></p>
-      <p><strong>Location</strong>: <%= @docker.docker_host_location %></p>
-      <p><strong>Network interface throughput</strong>: <%= @docker.docker_host_network_interface_throughput %></p>
-      <p><strong>Provider type</strong>: <%= @docker.docker_host_provider_type %></p>
-      <p><strong>API key</strong>: <%= @docker.docker_host_api_key[0..50] %></p>
-      <br><br><br><br><br>
-      <p><strong>API certificate</strong>: <%= @docker.docker_host_api_cert[0..50] %></p>
+<br>
+<br>
 
-      <%= link_to 'Back to Docker hosts list', dockers_path %>    
+<div class="new_resource_container">
+  <div class="new_resource_caption">
+    <p>Docker hosts configuration summary</p>
+  </div>
+
+
+  <table class="new_resource_table" border="none">
+      <tr>
+        <td>ID</td>
+        <td><%= @docker.id %></td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td><%= @docker.docker_host_name %></td>
+      </tr>
+      <tr>
+        <td>FQDN/IP</td>
+        <td><%= @docker.docker_host_fqdn %></td>
+      </tr>
+      <tr>
+        <td>RAM, GB</td>
+        <td><%= @docker.docker_host_ram %></td>
+      </tr>
+      <tr>
+        <td>CPU, cores</td>
+        <td><%= @docker.docker_host_cpu %></td>
+      </tr>
+      <tr>
+        <td>Disk space, GB</td>
+        <td><%= @docker.docker_host_disk_space %></td>
+      </tr>
+      <tr>
+        <td>Location</td>
+        <td><%= @docker.docker_host_location %></td>
+      </tr>
+      <tr>
+        <td>Network interface throughput, GBit/s</td>
+        <td><%= @docker.docker_host_network_interface_throughput %></td>
+      </tr>
+      <tr>
+        <td>Provider type</td>
+        <td><%= @docker.docker_host_provider_type %></td>
+      </tr>
+      <tr>
+        <td>Docker API key</td>
+        <td><%= @docker.docker_host_api_key[30..55] %></td>
+      </tr>
+      <tr>
+        <td>Docker API certificate</td>
+        <td><%= @docker.docker_host_api_cert[25..50] %></td>
+      </tr>
+    </table>
+    <%= link_to 'Back to the Docker hosts list', dockers_path, class: "header" %>
+</div>

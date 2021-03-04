@@ -1,39 +1,57 @@
-<html>
-  <title>TIGER: create test</title>
-  <h1>Test settings generation</h1>
 
-  <%= form_with scope: :test, url: tests_path, local: true do |form| %>
-    <%= form.label(:test_type, "Test type ", :class=>"form_label") %>
-    <%= form.select(:test_type, [['Performance', 'performance'],['Security', 'security']],{}, { :class=>'form_input' }) %>
-<br>
-    <%= form.label(:influxdb_adapter_name, "InfluxDB adapter ", :class=>"form_label") %>
-    <%= form.collection_select(:influxdb_adapter_id, Influxdb.all, :id,:adapter_name, { :class=>'form_input' }) %>
-<br>
-    <%= form.label(:test_name, "Test name ", :class=>"form_label") %>
-    <%= form.text_field(:test_name, :class=>"form_input", value: "basic") %>
-<br>
-    <%= form.label(:ram, "Test RAM limit, MB ", :class=>"form_label") %>
-    <%= form.text_field(:ram, :class=>"form_input", value: '100') %>
- <br>
-    <%= form.label(:cpu_cores, "Test CPU cores limit ", :class=>"form_label") %>
-    <%= form.text_field(:cpu_cores, :class=>"form_input", value: '1') %>
- <br>
-    <%= form.label(:git_repo_url, "Test settings Git-compatible URL: ", :class=>"form_label") %>
-    <%= form.text_field(:git_repo_url, :class=>"form_input", value: 'https://github.com/TIGER-Framework/tiger_jmeter_tests.git') %>
- <br>
-    <%= form.label(:git_repo_key, "SSH key for the Git URL (optional): ", :class=>"form_label") %>
-    <%= form.text_field(:git_repo_key, :class=>"form_input", value: '') %>
- <br>
-    <%= form.label(:user_id, "Test container user ID (optional): ", :class=>"form_label") %>
-    <%= form.text_field(:user_id, :class=>"form_input", value: '1001') %>
- <br>
- <br>
- <br>
- <br>
-    <p>
-      <%= form.submit("Create test",:class=>"form_button") %>
-    </p>
-  <% end %>
+    <br>
+    <br>
+    <div class="new_resource_container">
+        <div class="new_resource_caption">
+            <p>Test settings generation</p>
+        </div>
+
+          <%= form_with scope: :test, url: tests_path, local: true do |form| %>
+            <table class="new_resource_table" border="none">
+                <tr>
+                    <td>Test scope</td>
+                    <td><%= form.select(:test_scope, [['Performance', 'performance'],['Security', 'security']],{}, { :class=>'form_input' }) %></td>
+                </tr>
+                <tr>
+                    <td>Test type</td>
+                    <td><%= form.text_field(:test_type, value: "sample", :class=>'form_input') %></td>
+                </tr>
+                <tr>
+                    <td>Project ID</td>
+                    <td><%= form.text_field(:project_id, value: "TIGER", :class=>'form_input') %></td>
+                </tr>
+                <tr>
+                    <td>Environment type</td>
+                    <td><%= form.text_field(:env_type, value: "dev", :class=>'form_input') %></td>
+                </tr>
+                <tr>
+                    <td>InfluxDB adapter</td>
+                    <td><%= form.collection_select(:influxdb_adapter_id, Influxdb.all, :id,:adapter_name, {}, { :class=>'form_input' }) %></td>
+                </tr>
+                <tr>
+                    <td>Test RAM limit, MB</td>
+                    <td><%= form.text_field(:ram, value: '100', :class=>'form_input') %></td>
+                </tr>
+                <tr>
+                    <td>Test CPU cores limit</td>
+                    <td><%= form.text_field(:cpu_cores, value: '1', :class=>'form_input') %></td>
+                </tr>
+                <tr>
+                    <td>Test settings Git-compatible URL</td>
+                    <td><%= form.text_field(:git_repo_url, value: 'https://github.com/TIGER-Framework/tiger_jmeter_tests.git', :class=>'form_input') %></td>
+                </tr>
+                <tr>
+                    <td>Git-compatible URL SSH key (optional)</td>
+                    <td><%= form.text_field(:git_repo_key, value: '', :class=>'form_input') %></td>
+                </tr>
+                <tr>
+                    <td>Test container user ID (optional)</td>
+                    <td><%= form.text_field(:user_id, value: '1001', :class=>'form_input') %></td>
+                </tr>
+          </table>          
+          <p><%= form.submit("Create test",:class=>"form_button") %></p>
+      <% end %>
+    </div>    
+    
 
 
-</html>

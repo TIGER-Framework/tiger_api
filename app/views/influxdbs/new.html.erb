@@ -1,37 +1,45 @@
-<html>
-  <title>TIGER: create InfluxDB adapter settings</title>
-  <h1>Create InfluxDB adapter settings</h1>
+<br>
+<br>
 
+<div class="new_resource_container">
+  <div class="new_resource_caption">
+    <p>Create InfluxDB adapter</p>
+  </div>
 
   <%= form_with scope: :influxdb, url: influxdbs_path, local: true do |form| %>
-    <%= form.label(:adapter_name, "InfluxDB adapter name: ", :class=>"form_label") %>
-    <%= form.text_field(:adapter_name, :class=>"form_input", value: 'InfluxDB JMeter') %>
-  <br>
-    <%= form.label(:host, "Host IP or DNS name: ", :class=>"form_label") %>
-    <%= form.text_field(:host, :class=>"form_input", value: '') %>
-  <br>
-    <%= form.label(:port, "Port: ", :class=>"form_label") %>
-    <%= form.text_field(:port, :class=>"form_input", value: '8086') %>
-  <br>
-    <%= form.label(:protocol, "Protocol: ", :class=>"form_label") %>
-    <%= form.text_field(:protocol, :class=>"form_input", value: 'HTTPS') %>
-  <br>
-    <%= form.label(:db_name, "Database name: ", :class=>"form_label") %>
-    <%= form.text_field(:db_name, :class=>"form_input", value: 'jmeter') %>
-  <br>
-    <%= form.label(:username, "InfluxDB user name: ", :class=>"form_label") %>
-    <%= form.text_field(:username, :class=>"form_input", value: 'tiger') %>
-  <br>
-    <%= form.label(:password, "InfluxDB password: ", :class=>"form_label") %>
-    <%= form.text_field(:password, :class=>"form_input", value: 'password') %>
-  <br>
-  <br>
-  <br>
-  <br>
+    <table class="new_resource_table" border="none">
+      <tr>
+        <td>InfluxDB adapter name</td>
+        <td><%= form.text_field(:adapter_name, :class=>"form_input", value: 'InfluxDB JMeter') %></td>
+      </tr>
+      <tr>
+        <td>FQDN or IP address</td>
+        <td><%= form.text_field(:host, :class=>"form_input", value: '127.0.0.1') %></td>
+      </tr>
+        <tr>
+        <td>TCP port</td>
+        <td><%= form.text_field(:port, :class=>"form_input", value: '8086') %></td>
+      </tr>
+        <tr>
+        <td>Protocol</td>
+        <td><%= form.text_field(:protocol, :class=>"form_input", value: 'HTTP') %></td>
+      </tr>
+        <tr>
+        <td>Database name</td>
+        <td><%= form.text_field(:db_name, :class=>"form_input", value: 'jmeter') %></td>
+      </tr>
+        <tr>
+        <td>User name</td>
+        <td><%= form.text_field(:username, :class=>"form_input", value: 'tiger') %></td>
+      </tr>
+        <tr>
+        <td>User password</td>
+        <td><%= form.text_field(:password, :class=>"form_input", value: 'user') %></td>
+      </tr>
+    </table>
     <p>
-      <%= form.submit("Create InfluxDB adapter",:class=>"form_button") %>
+      <%= form.submit("Save configuration",:class=>"form_button") %>
     </p>
   <% end %>
+</div>
 
-
-</html>

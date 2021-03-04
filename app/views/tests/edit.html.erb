@@ -1,40 +1,56 @@
-<html>
-  <title>TIGER: edit test settings</title>
-  <h1>Edit test settings</h1>
+<br>
+<br>
 
+<div class="new_resource_container">
+  <div class="new_resource_caption">
+    <p>Edit test settings</p>
+  </div>
 
   <%= form_with model: @test, local: true, method: "patch", :action => 'update' do |form| %>
-    <%= form.label(:test_type, "Test type ", :class=>"form_label") %>
-    <%= form.select(:test_type, [['Performance', 'performance'],['Security', 'security']],{}, { :class=>'form_input', :value=> @test.test_type }) %>
-  <br>
-    <%= form.label(:influxdb_adapter_id, "InfluxDB adapter ", :class=>"form_label") %>
-    <%= form.collection_select(:influxdb_adapter_id, Influxdb.all, :id,:adapter_name, { :class=>'form_input', :value=> @test.influxdb_adapter_id }) %>
-  <br>
-    <%= form.label(:test_name, "Test name ", :class=>"form_label") %>
-    <%= form.text_field(:test_name, :class=>"form_input", value: @test.test_name) %>
-  <br>
-    <%= form.label(:ram, "Test RAM limit, MB ", :class=>"form_label") %>
-    <%= form.text_field(:ram, :class=>"form_input", value: @test.ram) %>
-  <br>
-    <%= form.label(:cpu_cores, "Test CPU cores limit ", :class=>"form_label") %>
-    <%= form.text_field(:cpu_cores, :class=>"form_input", value: @test.cpu_cores) %>
-  <br>
-    <%= form.label(:git_repo_url, "Test settings Git-compatible URL: ", :class=>"form_label") %>
-    <%= form.text_field(:git_repo_url, :class=>"form_input", value: @test.git_repo_url) %>
-  <br>
-    <%= form.label(:git_repo_key, "SSH key for the Git URL ", :class=>"form_label") %>
-    <%= form.text_field(:git_repo_key, :class=>"form_input", value: @test.git_repo_key) %>
-  <br>
-    <%= form.label(:user_id, "Test container user ID ", :class=>"form_label") %>
-    <%= form.text_field(:user_id, :class=>"form_input", value: @test.user_id) %>
-  <br>
-  <br>
-  <br>
-  <br>
+    <table class="new_resource_table" border="none">
+      <tr>
+        <td>Test scope</td>
+        <td><%= form.select(:test_scope, [['Performance', 'performance'],['Security', 'security']],{}, { :class=>'form_input', :value=> @test.test_scope }) %></td>
+      </tr>
+      <tr>
+        <td>Test type</td>
+        <td><%= form.text_field(:test_type, :class=>"form_input", value: @test.test_type) %></td>
+      </tr>
+      <tr>
+        <td>Project ID</td>
+        <td><%= form.text_field(:project_id, :class=>"form_input", value: "TIGER") %></td>
+      </tr>
+      <tr>
+        <td>Environment type</td>
+        <td><%= form.text_field(:env_type, :class=>"form_input", value: "dev") %></td>
+      </tr>
+      <tr>
+        <td>InfluxDB adapter</td>
+        <td><%= form.collection_select(:influxdb_adapter_id, Influxdb.all, :id,:adapter_name, {}, { :class=>'form_input', :value=> @test.influxdb_adapter_id }) %></td>
+      </tr>
+      <tr>
+        <td>Test RAM limit, MB</td>
+        <td><%= form.text_field(:ram, :class=>"form_input", value: @test.ram) %></td>
+      </tr>
+      <tr>
+        <td>Test CPU cores limit</td>
+        <td><%= form.text_field(:cpu_cores, :class=>"form_input", value: @test.cpu_cores) %></td>
+      </tr>
+      <tr>
+        <td>Test settings Git-compatible URL</td>
+        <td><%= form.text_field(:git_repo_url, :class=>"form_input", value: @test.git_repo_url) %></td>
+      </tr>
+      <tr>
+        <td>Git-compatible URL SSH key</td>
+        <td><%= form.text_field(:git_repo_key, :class=>"form_input", value: @test.git_repo_key) %></td>
+      </tr>
+      <tr>
+        <td>Test container user ID</td>
+        <td><%= form.text_field(:user_id, :class=>"form_input", value: @test.user_id) %></td>
+      </tr>
+    </table>
     <p>
       <%= form.submit("Update test settings",:class=>"form_button") %>
     </p>
   <% end %>
-
-
-</html>
+</div>

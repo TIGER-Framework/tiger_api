@@ -3,9 +3,11 @@ class TestsController < ApplicationController
   def new
   end
 
+  def schedule
+    @test=Test.find(params[:id])
+  end
 
-
-   def index
+  def index
     @tests=Test.all.order("id ASC")
   end
 
@@ -45,7 +47,7 @@ class TestsController < ApplicationController
     def test_params
         params.require(:test).permit(:git_repo_url,:git_repo_key,
         :user_id,:cpu_cores, :influxdb_adapter_id,
-        :ram,:test_type,:test_name)
+        :ram,:test_type,:test_scope,:build_number,:project_id, :env_type)
       #render plain: params[:docker].inspect
     end
 

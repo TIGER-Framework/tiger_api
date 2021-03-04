@@ -1,10 +1,41 @@
-<h1>InfluxDB host configuration summary</h1>
- 
-      <p><strong>Host</strong>: <%= @influxdb.host %></p>
-      <p><strong>Port</strong>: <%= @influxdb.port %></p>
-      <p><strong>Protocol</strong>: <%= @influxdb.protocol %></p>
-      <p><strong>User name</strong>: <%= @influxdb.username %></p>
-      <p><strong>Password</strong>: <%= @influxdb.password %></p>
-      <p><strong>Database name</strong>: <%= @influxdb.db_name %></p>
+<br>
+<br>
 
-      <%= link_to 'Back to InfluxDB hosts list', influxdbs_path %>    
+<div class="new_resource_container">
+  <div class="new_resource_caption">
+    <p>InfluxDB adapter configuration summary</p>
+  </div>
+
+
+    <table class="new_resource_table" border="none">
+      <tr>
+        <td>Adapter name</td>
+        <td><%= @influxdb.adapter_name %></td>
+      </tr>
+      <tr>
+        <td>FQDN/IP</td>
+        <td><%= @influxdb.host %></td>
+      </tr>
+      <tr>
+        <td>TCP port</td>
+        <td><%= @influxdb.port %></td>
+      </tr>
+      <tr>
+        <td>Protocol</td>
+        <td><%= @influxdb.protocol %></td>
+      </tr>
+      <tr>
+        <td>User name</td>
+        <td><%= @influxdb.username %></td>
+      </tr>
+      <tr>
+        <td>User password</td>
+        <td><%= @influxdb.password %></td>
+      </tr>
+      <tr>
+        <td>Database name</td>
+        <td><%= @influxdb.db_name %></td>
+      </tr>
+    </table>
+    <%= link_to 'Back to the adapters list', influxdbs_path, class: "header" %>
+</div>

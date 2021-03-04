@@ -2,6 +2,7 @@ class CreateDockers < ActiveRecord::Migration[6.0]
   def change
     create_table :dockers do |t|
       t.belongs_to :test
+      t.string :docker_host_name
       t.string :docker_host_fqdn
       t.integer :docker_host_ram
       t.integer :docker_host_cpu
@@ -18,10 +19,13 @@ class CreateDockers < ActiveRecord::Migration[6.0]
       t.string :git_repo_url
       t.text :git_repo_key
       t.string :user_id 
+      t.integer :build_number
+      t.string :project_id
+      t.string :env_type
       t.integer :cpu_cores
       t.integer :ram
+      t.string :test_scope
       t.string :test_type
-      t.string :test_name
       t.integer :influxdb_adapter_id
       t.timestamps
     end

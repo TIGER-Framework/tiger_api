@@ -1,10 +1,15 @@
 
+<div class="header">
+  <%= link_to "Add Docker host", new_docker_path, class: "actions" %>
+</div>
+
 <div class="container">
   <table class="responsive-table">
     <caption>Available Docker hosts list</caption>
     <thead>
        <tr>
           <th scope="col">ID</th>
+          <th scope="col">Name</th>
           <th scope="col">FQDN/IP</th>
           <th scope="col">RAM, GB</th>
           <th scope="col">CPU, cores</th>
@@ -26,7 +31,8 @@
     <tbody>                  
       <% @dockers.each do |docker| %>
         <tr>
-            <th scope="row"><%= link_to docker.id.to_s, docker_path(docker) %></th>
+          <th scope="row"><%= link_to docker.id.to_s, docker_path(docker) %></th>
+            <td data-title="Name"><%= docker.docker_host_name %></td>
             <td data-title="FQDN|IP"><%= docker.docker_host_fqdn %></td>
             <td data-title="RAM"><%= docker.docker_host_ram %></td>
             <td data-title="CPU"><%= docker.docker_host_cpu %></td>
@@ -42,12 +48,4 @@
       <% end %>
     </tbody>
   </table>
-  <br>
-  <br>
-  <%= link_to "Create Docker host", new_docker_path %>
-  <br>  
-  <%= link_to "Tests list", tests_path %>
-  <br>
-  <%= link_to "InfluxDB adapters list", influxdbs_path %>
-  <br>
-</div>
+</div> 
