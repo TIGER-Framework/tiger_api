@@ -11,7 +11,12 @@
       <tbody>
         <tr>
           <td><%= dockers_schedule_test_path %></td>
-          <td style="text-align:left"><pre><%= JSON.pretty_generate(@request_params)  %></pre></td>
+          <td style="text-align:left">
+            <pre>
+             <!-- Begin of the JSON output -->
+             <%= JSON.pretty_generate(@request_params)  %>
+             <!-- End of the JSON output -->
+            </pre></td>
           <td>Create and start Docker container</td>
         </tr>
       </tbody>
@@ -22,7 +27,13 @@
     <table class="responsive-table">
         <caption><%= @container_name %> Docker container details</caption>
         <tr>
-          <td style="text-align:left; border:1px solid #1d96b2"><pre><%= JSON.pretty_generate(@test_attributes) %></pre></td>
+          <td style="text-align:left; border:1px solid #1d96b2">
+            <pre>
+              <!-- Begin of the JSON output -->
+              <%= JSON.pretty_generate(@test_attributes) %>
+              <!-- End of the JSON output -->
+            </pre>
+          </td>
         </tr>
     </table>
 </div>

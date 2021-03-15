@@ -40,6 +40,14 @@ class CreateDockers < ActiveRecord::Migration[6.0]
       t.string :password
     end
 
+    create_table :runningtests do |t|
+      t.string :container_name
+      t.integer :docker_host_id
+      t.integer :influxdb_adapter_id
+      t.string :test_params
+      t.string :status
+      t.string :details
+    end
 
   end
 
