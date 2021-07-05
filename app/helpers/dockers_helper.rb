@@ -10,8 +10,10 @@ module DockersHelper
     Rails.logger.info "Scheduling docker container with the following params: #{schedule_params}"
     Rails.logger.info http_req(docker_obj.docker_host_fqdn,docker_obj.docker_host_api_key,docker_obj.docker_host_api_cert,'/containers/create?name='+container_name,schedule_params)
 
+    Rails.logger.info "Starting the container"
     Rails.logger.info http_req(docker_obj.docker_host_fqdn,docker_obj.docker_host_api_key,docker_obj.docker_host_api_cert,'/containers/'+container_name+'/start',start_params)
 
+    Rails.logger.info "Container status: "
     container_status= JSON.parse(http_req(docker_obj.docker_host_fqdn,docker_obj.docker_host_api_key,docker_obj.docker_host_api_cert,'/containers/'+container_name+'/json'))
     Rails.logger.info container_status
 
@@ -23,6 +25,10 @@ module DockersHelper
 
     return container_status
 
+  end
+
+  def stop_container(running_test_obj,docker_obj)
+    Rails.logger.info http_req(docker_obj.docker_host_fqdn,docker_obj.docker_host_api_key,docker_obj.docker_host_api_cert,"/containers/#{running_test_obj.container_name}/stop")
   end
 
   def http_req(docker_host_fqdn,docker_host_api_key,docker_host_api_cert,uri,req_params='')

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/dockers/schedule-test', to: 'dockers#schedule_test'
   get 'tests/schedule', to: 'tests#schedule'
   root 'welcome#index'
+  resources :runningtests
   resources :dockers
   resources :tests
   resources :influxdbs

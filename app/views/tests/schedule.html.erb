@@ -21,6 +21,14 @@
         <td>Image name</td>
         <td><%= text_field_tag("docker_image_name", "tigerframework/tiger_jmeter:0.0.6.1", size: 50, class: "form_input") %></td>        
       </tr>
+      <tr>
+        <td>Delete container after exit</td>
+        <td><%= check_box_tag(:delete_container_after_exit,"1",true) %></td>
+      </tr>
+      <tr>
+        <td>Keep container running for 24 hours</td>
+        <td><%= check_box_tag(:keep_container_running,"1",false) %></td>
+      </tr>
     </table>
     <%= hidden_field_tag "id", @test.id %>
     <%= hidden_field_tag "influxdb_adapter_id", @test.influxdb_adapter_id %>

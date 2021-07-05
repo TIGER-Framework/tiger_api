@@ -1,0 +1,49 @@
+<div class="header">
+  <%= link_to "Schedule a test", tests_path, class: "actions" %>
+</div>
+
+<div class="container">
+  <table class="responsive-table">
+    <caption>Running tests list</caption>
+    <thead>
+       <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Container name</th>
+          <th scope="col">Docker host</th>
+          <th scope="col">InfluxDB adapter</th>
+          <th scope="col">Test parameters</th>
+          <th scope="col">Status</th>
+          <th scope="col">Details</th>
+          <th scope="col">Stop test</th>
+       </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <% @runningtests.each do |runningtest| %>
+        <tr>
+          <th scope="row"><%= link_to runningtest.id.to_s, runningtest_path(runningtest) %></th>
+            <td data-title="Container name"><%= runningtest.container_name %></td>
+            <td data-title="Docker host"><%= Docker.find(runningtest.docker_host_id).docker_host_name %></td>
+            <td data-title="InfluxDB adapter"><%= Influxdb.find(runningtest.influxdb_adapter_id).adapter_name %></td>
+            <td data-title="Test parameters" style="text-align:left"><pre>
+            <!-- Begin of the JSON output -->
+                <%= JSON.pretty_generate(runningtest.test_params) %>
+            <!-- End of the JSON output -->
+             </pre></td>
+            <td data-title="Status"><%= runningtest.status %></td>
+            <td data-title="Details" style="text-align:left"><pre>
+            <!-- Begin of the JSON output -->
+                <%= JSON.pretty_generate(runningtest.details) %>
+            <!-- End of the JSON output -->
+            </pre></td>
+            <td data-title="Stop test"><%= link_to 'Stop', runningtest_path(runningtest), method: :delete,
+                          data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
